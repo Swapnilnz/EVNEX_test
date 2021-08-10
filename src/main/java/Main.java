@@ -31,7 +31,7 @@ public class Main {
             match.pointWonBy("player 2");
         }
 
-        for (int i = 0; i < 3; i ++) {
+        for (int i = 0; i < 4; i ++) {
             match.pointWonBy("player 1");
         }
 

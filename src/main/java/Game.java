@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Holds state of Game of one Set. Can be of type 'Normal', or 'Tie breaker'.
+ */
 public class Game {
     String playerOne;
     String playerTwo;
@@ -18,6 +21,10 @@ public class Game {
         playerTwoScore = 0;
     }
 
+    /**
+     * Add 1 to a player's game score
+     * @param playerName player's whose score to add to
+     */
     void increaseScore(String playerName) {
         if (playerName.equalsIgnoreCase(playerOne)) {
             playerOneScore += 1;
@@ -26,6 +33,10 @@ public class Game {
         }
     };
 
+    /**
+     * Return the player's name who has won the game, or null if game is still going
+     * @return String of player name, or null
+     */
     public String gameWinner() {
         int scoreThreshold = 4;
         if (gameType == GameType.TIEBREAK) {
@@ -40,6 +51,10 @@ public class Game {
         return null;
     }
 
+    /**
+     * Get a stringified of the game, e.g. "15-15", or "1-1" if tiebreaker game.
+     * @return a formatted string of the game's score (empty if game has just started)
+     */
     public String getScore() {
         if (playerOneScore == 0 && playerTwoScore == 0) {
             return "";
@@ -56,6 +71,10 @@ public class Game {
         return null;
     }
 
+    /**
+     * Get a formatted string of the game's score if it is a normal game (non-tie-breaker)
+     * @return formatted string of the game score
+     */
     private String getNormalScore() {
         if (playerOneScore >= 3 && playerTwoScore >= 3) {
             if (playerOneScore > playerTwoScore) {

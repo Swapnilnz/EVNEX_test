@@ -5,9 +5,13 @@ public class Match {
     private Game currentGame;
     private int playerOneSetScore;
     private int playerTwoSetScore;
-    private String winner;
 
 
+    /**
+     * Concatenate and print the set score and current game score
+     * @param setScore formatted string of the current set score, e.g. "1-1"
+     * @param gameScore formatted string of the current game score, e.g. "15-15", or "1-1"
+     */
     private void prettyPrintScore(String setScore, String gameScore) {
         String outputString = setScore;
         if (gameScore.length() > 0) {
@@ -17,6 +21,9 @@ public class Match {
     }
 
 
+    /**
+     * Print the current set and game score
+     */
     public void score() {
         String setScore = String.format("%d-%d", playerOneSetScore, playerTwoSetScore);
         String gameScore = currentGame.getScore();
@@ -24,6 +31,10 @@ public class Match {
     }
 
 
+    /**
+     * If game is not finished, increment a player's score
+     * @param playerName player whose score to increment
+     */
     public void pointWonBy(String playerName) {
         boolean finished = checkFinished();
 
@@ -33,6 +44,10 @@ public class Match {
         }
     }
 
+    /**
+     * Check if the current game is over (there is a winner).
+     * If there is a winner, increment their sets score and restart the game.
+     */
     private void checkGameOver() {
         String gameWinner = currentGame.gameWinner();
         if (gameWinner != null) {
@@ -43,10 +58,6 @@ public class Match {
                 playerTwoSetScore += 1;
             }
 
-            if (currentGame.gameType == GameType.TIEBREAK) {
-                winner = (playerOneSetScore > playerTwoSetScore) ? playerOne : playerTwo;
-            }
-
             if (playerOneSetScore == 6 && playerOneSetScore == playerTwoSetScore) {
                 currentGame = new Game(playerOne, playerTwo, GameType.TIEBREAK);
             } else {
@@ -55,6 +66,10 @@ public class Match {
         }
     }
 
+    /**
+     * Check if the match is finished by checking if either is a winner.
+     * @return true if the match is finished
+     */
     private boolean checkFinished() {
 
         if (checkWinner(playerOneSetScore, playerTwoSetScore)) {
@@ -68,6 +83,12 @@ public class Match {
         return false;
     }
 
+    /**
+     * Check if scoreOne is a winning score
+     * @param scoreOne score to check if it is winning
+     * @param scoreTwo score to check against
+     * @return true if scoreOne is seven (meaning tiebreaker was won), or has won at least 6 games and by a margin of 2
+     */
     private boolean checkWinner(int scoreOne, int scoreTwo) {
         return (scoreOne == 7 || (scoreOne >= 6 && scoreOne - scoreTwo >= 2));
     }
@@ -78,7 +99,6 @@ public class Match {
         playerOneSetScore = 0;
         playerTwoSetScore = 0;
         currentGame = new Game(playerOne, playerTwo, GameType.NORMAL);
-        winner = null;
     }
 
 //    GETTERS AND SETTERS
