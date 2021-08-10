@@ -59,16 +59,16 @@ public class Game {
         if (playerOneScore == 0 && playerTwoScore == 0) {
             return "";
         }
-
+        String score = null;
         if (gameType == GameType.NORMAL) {
-            return getNormalScore();
+            score = getNormalScore();
         }
 
         if (gameType == GameType.TIEBREAK) {
-            return String.format("%s-%s", playerOneScore, playerTwoScore);
+            score = String.format("%s-%s", playerOneScore, playerTwoScore);
         }
 
-        return null;
+        return score;
     }
 
     /**
@@ -77,32 +77,12 @@ public class Game {
      */
     private String getNormalScore() {
         if (playerOneScore >= 3 && playerTwoScore >= 3) {
-            if (playerOneScore > playerTwoScore) {
-                return "Advantage " + playerOne;
-            } else if (playerTwoScore > playerOneScore) {
-                return "Advantage " + playerTwo;
-            } else {
+            if (playerOneScore == playerTwoScore) {
                 return "Deuce";
+            } else {
+                return "Advantage " + ((playerOneScore > playerTwoScore) ? playerOne : playerTwo);
             }
         }
         return String.format("%s-%s", SCORENAMES.get(playerOneScore), SCORENAMES.get(playerTwoScore));
-    }
-
-//    GETTERS AND SETTERS
-
-    public int getPlayerOneScore() {
-        return playerOneScore;
-    }
-
-    public void setPlayerOneScore(int playerOneScore) {
-        this.playerOneScore = playerOneScore;
-    }
-
-    public int getPlayerTwoScore() {
-        return playerTwoScore;
-    }
-
-    public void setPlayerTwoScore(int playerTwoScore) {
-        this.playerTwoScore = playerTwoScore;
     }
 }

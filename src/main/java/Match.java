@@ -100,31 +100,4 @@ public class Match {
         playerTwoSetScore = 0;
         currentGame = new Game(playerOne, playerTwo, GameType.NORMAL);
     }
-
-//    GETTERS AND SETTERS
-
-
-    public Game getCurrentGame() {
-        return currentGame;
-    }
-
-    public void setCurrentGame(Game currentGame) {
-        this.currentGame = currentGame;
-    }
-
-    public int getPlayerOneSetScore() {
-        return playerOneSetScore;
-    }
-
-    public void setPlayerOneSetScore(int playerOneSetScore) {
-        this.playerOneSetScore = playerOneSetScore;
-    }
-
-    public int getPlayerTwoSetScore() {
-        return playerTwoSetScore;
-    }
-
-    public void setPlayerTwoSetScore(int playerTwoSetScore) {
-        this.playerTwoSetScore = playerTwoSetScore;
-    }
 }
